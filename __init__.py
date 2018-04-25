@@ -1,2 +1,1 @@
-
-import petstore
+from . import petstore
