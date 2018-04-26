@@ -2,10 +2,23 @@
 
 <templates xml:space="preserve">
     <t t-name = "HomePageTemplate">
-        <div style="background-color :red;">This is some simple HTML</div>
+        <!-- <div style="background-color :red;">This is some simple HTML</div> -->
+       <div class = "oe_color_div"></div>
     </t>
 
-    <t t-name = "ProductsWidget">
+
+    <t t-name = "colorInputWidget">
+        <div>
+            Red : <input type = "text" class = "oe_color_red" value = "00"></input>
+            <br/>
+            Green : <input type = "text" class = "oe_color_green" value = "00"></input>
+            <br/>
+            Blue : <input type = "text" class = "oe_color_blue" value = "00"></input>
+            <br/>
+        </div>
+    </t>
+
+    <!-- <t t-name = "ProductsWidget">
         <div>
             <t t-foreach = "widget.products" t-as = "product">
                 <span class = "oe_product_item" t-attf-style = "background-color :{{widget.color }};">
@@ -15,4 +28,14 @@
             </t>
         </div>
     </t>
+
+    <t t-name = "confirm_widget">
+        <div>
+            Are you sure you want to perform this action?
+        </div>
+        <button class = "ok_button">OK</button>
+        <button class = "cancel_button">Cancel</button>
+    </t> -->
+
+
 </templates>
