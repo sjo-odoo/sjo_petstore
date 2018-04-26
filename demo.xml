@@ -1,0 +1,32 @@
+<odoo>  
+    <record id="object0" model="oepetstore.message_of_the_day"> 
+        <field name="name">Object 0</field> 
+        <field name="message">0</field> 
+        <field name="color">0</field> 
+    </record> 
+
+    <record id="object1" model="oepetstore.message_of_the_day"> 
+        <field name="name">Object 1</field> 
+        <field name="message">10</field> 
+        <field name="color">0</field>
+    </record> 
+
+    <record id="object2" model="oepetstore.message_of_the_day"> 
+        <field name="name">Object 2</field> 
+        <field name="message">20</field> 
+        <field name="color">0</field>
+    </record> 
+
+    <record id="object3" model="oepetstore.message_of_the_day"> 
+        <field name="name">Object 3</field> 
+        <field name="message">30</field> 
+        <field name="color">0</field>
+    </record> 
+
+    <record id="object4" model="oepetstore.message_of_the_day"> 
+        <field name="name">Object 4</field> 
+        <field name="message">40</field> 
+        <field name="color">0</field>
+    </record> 
+
+</odoo>

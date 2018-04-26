@@ -13,6 +13,7 @@ A wonderful application to sell pet toys.
     'data': [
         "petstore.xml",
         "petstore_data.xml",
+        "demo.xml"
       
     ],
     'depends' : ['sale_stock'],
