@@ -19,8 +19,8 @@ odoo.define('oepetstore', function(require){
     var Widget = require('web.Widget');
     var WebClient = require('web.WebClient');
     var core = require('web.core');
-
     var QWeb = core.qweb;
+    var BasicModel = require('web.BasicModel');
 
     console.log(" PETSTORE.JS loaded");
 
@@ -72,6 +72,17 @@ odoo.define('oepetstore', function(require){
             this.set('color',color);
         }
     });
+
+    var MessageOfTheDay = AbstractAction.extend({
+        template : "MessageOfTheDay",
+        start : function(){
+            var self = this;
+            self._rpc( {model : "oepetstore.message_of_the_day", method : "my_method"}).then(function(result){
+                self.$(".oe_mywidget_message_of_the_day").text(result.message);
+            });
+        },
+    });
+
     var HomePage = AbstractAction.extend({
         //className : 'oe_petstore_greetings',
         template : 'HomePageTemplate',
@@ -106,6 +117,11 @@ odoo.define('oepetstore', function(require){
             // it does not support replacing the widget's root element at runtime as the binding is only performed when start() is run (during widget initialization)
             // it requires dealing with this - binding issues
         
+            // loading modules
+            self._rpc({model : "oepetstore.message_of_the_day", method : "my_method", args : ""}).then(function(result){
+                self.$el.append("<div>Hello " + result["na"] + "</div>");
+            });
+
             self.colorInput = new ColorInputWidget(this);
             self.colorInput.on("change:color",this,this.color_changed);
             return self.colorInput.appendTo(this.$el);
