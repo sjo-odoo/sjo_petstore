@@ -17,6 +17,7 @@
         <field name="tag">petstore.homepage</field>
     </record>
 
+
     <menuitem id="home_page_petstore_menu" name="Home Page" parent="petstore_menu"
         action="action_home_page"/>
 
@@ -27,6 +28,7 @@
         <field name="arch" type="xml">
             <tree string="Message of the day">
                 <field name="message"/>
+                <field name = "color" colspan = "4" widget = "char2" />
             </tree>
         </field>
     </record>
@@ -38,6 +40,7 @@
         <field name="arch" type="xml">
             <form string="Message of the day">
                 <group>
+
                     <field name="message" colspan="4"/>
                 </group>
             </form>

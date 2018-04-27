@@ -11,9 +11,10 @@ OpenERP Pet Store
 A wonderful application to sell pet toys.
         """,
     'data': [
-        "petstore.xml",
-        "petstore_data.xml",
-        "demo.xml"
+        "views/petstore.xml",
+        "views/petstore_data.xml",
+        "views/demo.xml",
+        "views/oepetstore.message_of_the_day.csv",
       
     ],
     'depends' : ['sale_stock'],

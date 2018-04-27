@@ -12,9 +12,19 @@
     margin: 10px;
 }
 
+.oe_color_widget{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
 .oe_petstore_motd{
     margin : 5px;
     padding: 5px;
     border-radius: 3px;
     background-color: #F0EEEE;
+}
+
+.oe_petstore_pettoyslist{
+    padding: 5px;
 }

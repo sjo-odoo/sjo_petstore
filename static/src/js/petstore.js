@@ -15,14 +15,37 @@
 odoo.define('oepetstore', function(require){
     'use strict';
 
+   // var WebClient = require('web.WebClient');
     var AbstractAction = require('web.AbstractAction');
     var Widget = require('web.Widget');
-    var WebClient = require('web.WebClient');
+
     var core = require('web.core');
     var QWeb = core.qweb;
-    var BasicModel = require('web.BasicModel');
+   // var BasicModel = require('web.BasicModel');
+   /// var field_registry = require('web.field_registry');
 
-    console.log(" PETSTORE.JS loaded");
+
+    var AbstractField = require('web.AbstractField');
+
+    //console.log(" PETSTORE.JS loaded");
+
+    // var Char2Field = AbstractField.extend({
+    //     init : function(){
+    //         this._super.apply(this,arguments);
+    //         this.set("value","");
+    //     },
+    //     start : function(){
+    //         //this.display_field();
+    //         return this._super();
+    //     },
+    //     display_field = function(){
+    //         var self = this;
+    //         self.$el.html(QWeb.render("FieldChar2"));
+    //     },
+    //     render_value : function(){
+    //         this.$el.text(this.get("value"));
+    //     }
+    // });
 
     var GreetingsWidget = AbstractAction.extend({
         className :'oe_petstore_homepage',
@@ -73,12 +96,37 @@ odoo.define('oepetstore', function(require){
         }
     });
 
+
+    // widget to display last record name of the oepetstore.message_of_the_day
     var MessageOfTheDay = AbstractAction.extend({
         template : "MessageOfTheDay",
         start : function(){
             var self = this;
             self._rpc( {model : "oepetstore.message_of_the_day", method : "my_method"}).then(function(result){
-                self.$(".oe_mywidget_message_of_the_day").text(result.message);
+                self.$(".oe_mywidget_message_of_the_day").text(result['hello']);
+            });
+        },
+    });
+
+    var PetToysList = AbstractAction.extend({
+        template : 'PetToysList',
+        events: {
+            'click .oe_petstore_pettoyslist': 'selected_item',
+        },
+        start : function(){
+            var self = this;
+            return self._rpc({ model: "oepetstore.message_of_the_day", method: "my_method" }).then(function (result) {
+                self.$(".oe_mywidget_message_of_the_day").text(result['hello']);
+            });
+        },
+        selected_item: function (event) {
+            console.log("BUtton clicked");
+            this.do_action({
+                
+                type: 'ir.actions.act_window',
+                res_model: 'product.product',
+                 res_id: $(event.currentTarget).data('id'),
+                views: [[false, 'form']],
             });
         },
     });
@@ -86,6 +134,7 @@ odoo.define('oepetstore', function(require){
     var HomePage = AbstractAction.extend({
         //className : 'oe_petstore_greetings',
         template : 'HomePageTemplate',
+      
         start: function () {
             
             console.log("pet store home page loaded");
@@ -117,22 +166,29 @@ odoo.define('oepetstore', function(require){
             // it does not support replacing the widget's root element at runtime as the binding is only performed when start() is run (during widget initialization)
             // it requires dealing with this - binding issues
         
-            // loading modules
-            self._rpc({model : "oepetstore.message_of_the_day", method : "my_method", args : ""}).then(function(result){
-                self.$el.append("<div>Hello " + result["na"] + "</div>");
-            });
+            // // loading modules
+            // self._rpc({model : "oepetstore.message_of_the_day", method : "my_method", args : ""}).then(function(result){
+            //     self.$el.append("<div>Hello " + result["na"] + "</div>");
+            // });
 
-            self.colorInput = new ColorInputWidget(this);
-            self.colorInput.on("change:color",this,this.color_changed);
-            return self.colorInput.appendTo(this.$el);
+             self.colorInput = new ColorInputWidget(this);
+             self.colorInput.on("change:color",this,this.color_changed);
+             return self.colorInput.appendTo(this.$el);
+
+            //return new MessageOfTheDay(this).appendTo(this.$el);
+            //return self.$el.append(QWeb.render('PetToysList'));
+    
         },
+        
         color_changed : function(){
             console.log(this.colorInput.get("color"));
-            self.$(".oe_color_div").css("background-color",this.colorInput.get("color"));
+            //self.$(".oe_color_div").css("background-color",this.colorInput.get("color"));
+            self.$(".oe_color_widget").css("background-color", this.colorInput.get("color"));
 
         }
     });
 
+//    field_registry.add('char2',Char2Field);
     core.action_registry.add('petstore.homepage',HomePage);
 
 })

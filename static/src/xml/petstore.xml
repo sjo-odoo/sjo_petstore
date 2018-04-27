@@ -3,12 +3,14 @@
 <templates xml:space="preserve">
     <t t-name = "HomePageTemplate">
         <!-- <div style="background-color :red;">This is some simple HTML</div> -->
-       <div class = "oe_color_div"></div>
+       <div class = "oe_color_div">
+       
+       </div>
     </t>
 
 
     <t t-name = "colorInputWidget">
-        <div>
+        <div class = "oe_color_widget">
             Red : <input type = "text" class = "oe_color_red" value = "00"></input>
             <br/>
             Green : <input type = "text" class = "oe_color_green" value = "00"></input>
@@ -22,6 +24,18 @@
     <t t-name = "MessageOfTheDay">
         <div class = "oe_peetstore_motd">
             <p class = "oe_mywidget_message_of_the_day"></p>
+        </div>
+    </t>
+
+    <t t-name = "PetToysList">
+        <div class = "oe_petstore_pettoyslist">
+            <button class = "oe_petstore_pettoyslist btn btn-success">Check</button>
+        </div>
+    </t>
+
+    <t t-name = "FieldChar2">
+        <div class="oe_field_char2">
+            <input type="text"></input>
         </div>
     </t>
     <!-- <t t-name = "ProductsWidget">
