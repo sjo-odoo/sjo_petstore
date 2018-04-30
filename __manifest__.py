@@ -1,23 +1,24 @@
 {
-    'name' : 'OpenERP Pet Store',
+    'name' : 'Odoo Pet Store',
     'version': '1.0',
     'summary': 'Sell pet toys',
     'category': 'Tools',
     'description':
         """
-OpenERP Pet Store
+Odoo Pet Store
 =================
 
 A wonderful application to sell pet toys.
         """,
     'data': [
-        "views/petstore.xml",
-        "views/petstore_data.xml",
-        "views/demo.xml",
-        "views/oepetstore.message_of_the_day.csv",
-      
+        "views/petstore.xml",       
+    ],
+    'demo': [
+        "demo/petstore_data.xml",
+        "demo/demo.xml",
+        "demo/oepetstore.message_of_the_day.csv"
     ],
     'depends' : ['sale_stock'],
-    'qweb': ['static/src/xml/*.xml'],
+    'qweb': ['static/src/xml/petstore.xml'],
     'application': True,
 }

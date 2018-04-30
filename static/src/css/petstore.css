@@ -1,4 +1,4 @@
-.oe_product_item{
+ .oe_product_item{
     display: inline-block;
     padding: 3px;
     margin: 5px;
@@ -11,6 +11,7 @@
     height: 100px;
     margin: 10px;
 }
+
 
 .oe_color_widget{
     width: 200px;
@@ -27,4 +28,27 @@
 
 .oe_petstore_pettoyslist{
     padding: 5px;
+} 
+
+.oe_petstore_pettoy{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #F0EEEE;
+}
+
+
+
+.oe_petstore_homepage {
+    display: table;
+}
+
+.oe_petstore_homepage_left {
+    display: table-cell;
+    width : 300px;
+}
+
+.oe_petstore_homepage_right {
+    display: table-cell;
+    width : 300px;
 }
