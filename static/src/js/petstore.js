@@ -93,6 +93,7 @@ odoo.define('oepetstore', function(require){
                 this.$(".oe_color_green").val(),
                 this.$(".oe_color_blue").val()        
             ].join('');
+            console.log("color inside input_changed is"+color);
             this.set('color',color);
         },
     });
@@ -175,16 +176,17 @@ odoo.define('oepetstore', function(require){
 //             // it does not support replacing the widget's root element at runtime as the binding is only performed when start() is run (during widget initialization)
 //             // it requires dealing with this - binding issues
             var self = this;
+           
 //             // // loading modules
              self._rpc({model : "oepetstore.message_of_the_day", method : "my_method", args : ""}).then(function(result){
                  self.$el.append("<div>Hello " + result + "</div>");
              });
-//             var self = this;
-//             self.colorInput = new ColorInputWidget(this);
-//             self.colorInput.on("change:color",this,this.color_changed);
-//             //return self.colorInput.appendTo(this.$el);
+//            // var self = this;
+
+                // self.colorInput = new ColorInputWidget(this);
+                // self.colorInput.on("change:color",this,this.color_changed);
+    //          //return self.colorInput.appendTo(this.$el);
              return $.when(
-                //self.colorInput.appendTo(this.$el),
                 new PetToysList(this).appendTo(this.$('.oe_petstore_homepage_left')),
                 new MessageOfTheDay(this).appendTo(this.$('.oe_petstore_homepage_right'))
             );
@@ -236,8 +238,7 @@ odoo.define('oepetstore', function(require){
                 var i=1;
                 //console.log(results.length);
                 _.each(results,function(item){
-                    console.log();
-                    console.log(item['display_name'])
+                    //console.log(item['display_name'])
                     self.$el.append(QWeb.render('PetToy', {
                         item: {
                             "name": item['display_name'] , "image": item['image']}}));
@@ -247,10 +248,13 @@ odoo.define('oepetstore', function(require){
         },
         selected_item: function (event) {
             //console.log("BUtton clicked");
+            console.log($(event.currentTarget).data.res_id)
+            console.log($(event))
             this.do_action({
                 type: 'ir.actions.act_window',
                 res_model: 'product.product',
-                res_id: $(event.currentTarget).data('id'),
+                // $(event.currentTarget).data('res-id')
+                res_id: 47,
                 views: [[false, 'form']],
             });
         },
@@ -291,9 +295,48 @@ TestClass.include({
 
 console.log(new TestClass().testMethod());
 // will print "hello world"
-
 */
+
+    var TrainRouteWidget = AbstractAction.extend({
+        init : function(){
+
+        },
+        start : function(){
+
+        },
+    });
+
+     var WidgetHomepage = AbstractAction.extend({
+        template: 'WidgetHomepage',
+        start: function () {
+            // var self = this;
+            // self.colorInput = new ColorInputWidget(this);
+            // self.colorInput.on("change:color", this, this.color_changed);
+            // self.colorInput.appendTo(this.$el);
+
+            // console.log("WidgetHomepage loaded");
+            // var products = ["cpu","mouse","keyboard","graphic card","screen"];
+            // var product_widget = new ProductsWidget(this,products,"#00FF00");       //The first argument is this, which in that case was a HomePage instance.This tells the widget being created which other widget is its parent.
+            // var products = new ProductsWidget(this, ["cpu", "mouse", "keyboard", "graphic card", "screen"], "#00FF00" );
+            // products.appendTo(this.$el);
+
+            
+        },
+
+         color_changed: function () {
+            var self =this;
+            //console.log(self.colorInput.get("color"));
+            //self.$(".oe_color_div").css("background-color",this.colorInput.get("color"));
+            console.log( self.colorInput.get("color"));
+
+         }
+     })
+
 //    field_registry.add('char2',Char2Field);
     core.action_registry.add('petstore.homepage',HomePage);
+
+   
+
+    core.action_registry.add('widget.homepage',WidgetHomepage)
 
 })

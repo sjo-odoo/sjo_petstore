@@ -12,6 +12,19 @@
        </div>
     </t>
 
+    <t t-name = "TrainRoute">
+        <div id = "route_map">
+
+        </div>
+    </t>
+    <t t-name = "WidgetHomepage">
+        <!-- <div>Hello <t t-esc = "widget.name" /></div> -->
+        <!-- <div style="background-color :red;">This is some simple HTML</div> -->
+       <div class = "oe_color_div">
+       
+       </div>
+    </t>
+
 <!-- templates should have a single non-t root element, especially if they're set as a widget's template. 
 If there are multiple "root elements",
  results are undefined (usually only the first root element will be used and the others will be ignored) -->

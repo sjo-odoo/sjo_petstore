@@ -18,6 +18,13 @@
         <field name="tag">petstore.homepage</field>
     </record>
 
+    <record id="widget_home_page" model="ir.actions.client">
+        <field name="name">Pet Store Home</field>
+        <field name="tag">widget.homepage</field>
+    </record>
+
+     <menuitem id="widget_homepage_menu" name="Widget Page" parent="petstore_menu"
+        action="widget_home_page"/>
 
     <menuitem id="home_page_petstore_menu" name="Home Page" parent="petstore_menu"
         action="action_home_page"/>
